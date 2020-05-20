@@ -28,12 +28,10 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 
 const preventSleep = 'prevent-display-sleep';
 let tray = null;
-let id;
-
+let id   = null;
 
 function createTray(){
   const iconPath = path.join(__dirname, 'stay_up_late_icon.png');
-  id = powerSaveBlocker.start(preventSleep);
 
   tray = new Tray(iconPath);
 
@@ -41,6 +39,7 @@ function createTray(){
     {
       label: "On",
       type: "radio",
+      checked: false,
       click: () => {
         console.log("Clicked the on button");
         
@@ -52,6 +51,7 @@ function createTray(){
     {
       label: "Off",
       type: "radio",
+      checked: true,
       click: () => {
         console.log("Clicked the off button");
 
